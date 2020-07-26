@@ -44,12 +44,16 @@ var Layer = /** @class */ (function (_super) {
         return _this;
     }
     Layer.prototype.connectLayer = function (inputShape) {
-        this.weights = mathjs_1.matrix();
-        this.weights.resize([]);
+        this.weights = mathjs_1.matrix(mathjs_1.default.ones(mathjs_1.size(this.activations)[0], inputShape));
+        this.weights.resize([mathjs_1.size(this.activations)[0], inputShape]);
     };
-    Layer.prototype.activateLayer = function (input) {
-        console.log('layerActivated');
-        this.emit('activated');
+    Layer.prototype.forward = function (input) {
+        var _this = this;
+        this.activations = mathjs_1.default.map(mathjs_1.multiply(this.weights, input), function (val) { return _this.sigmoid(val); });
+        this.emit('activated', this.activations);
+    };
+    Layer.prototype.sigmoid = function (val) {
+        return 1 / (1 - Math.pow(mathjs_1.default.e, val));
     };
     return Layer;
 }(events_1.EventEmitter));
