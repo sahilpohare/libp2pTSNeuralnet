@@ -7,8 +7,8 @@ const layer = new Layer (2);
 
 OutputLayerSoc.on('connection',(socket)=>{
     console.log('input layer connected');
+    layer.connectLayer(2);
     socket.on('input',(input : Matrix)=>{
-        layer.activateLayer(input);
         console.log(math.max(math.flatten(layer.activations)));
     })
 })

@@ -10,6 +10,7 @@ var process_1 = require("process");
 var soc = socket_io_client_1.default('localhost:3000');
 soc.on('connect', function () {
     console.log('connected');
+    question();
 });
 var rl = readline_1.default.createInterface({
     output: process_1.stdout,

@@ -39,12 +39,15 @@ var Layer = /** @class */ (function (_super) {
     __extends(Layer, _super);
     function Layer(noOfNeurons) {
         var _this = _super.call(this) || this;
+        //Create Layer with n no of neurons
         _this.activations = mathjs_1.matrix(mathjs_1.default.ones(noOfNeurons));
         _this.weights = mathjs_1.matrix([]);
         return _this;
     }
+    //define weight Shape (currently needs to be defined manually)
     Layer.prototype.connectLayer = function (inputShape) {
-        this.weights = mathjs_1.matrix(mathjs_1.default.ones(mathjs_1.size(this.activations)[0], inputShape));
+        //
+        this.weights = mathjs_1.default.ones(mathjs_1.size(this.activations)[0], inputShape);
         this.weights.resize([mathjs_1.size(this.activations)[0], inputShape]);
     };
     Layer.prototype.forward = function (input) {

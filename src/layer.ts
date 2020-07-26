@@ -8,12 +8,17 @@ export class Layer extends EventEmitter{
 
     constructor(noOfNeurons : number){
         super()
+
+        //Create Layer with n no of neurons
         this.activations = matrix(math.ones(noOfNeurons));
         this.weights = matrix([]);
     }
 
+    //define weight Shape (currently needs to be defined manually)
     connectLayer(inputShape : number){
-        this.weights = matrix(math.ones(size(this.activations)[0],inputShape));
+
+        //
+        this.weights = math.ones(size(this.activations)[0],inputShape) as Matrix;
         this.weights.resize([size(this.activations)[0],inputShape]);
     }
 

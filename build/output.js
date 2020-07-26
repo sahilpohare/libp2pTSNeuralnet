@@ -10,8 +10,8 @@ var OutputLayerSoc = socket_io_1.default().listen(3000);
 var layer = new layer_1.Layer(2);
 OutputLayerSoc.on('connection', function (socket) {
     console.log('input layer connected');
+    layer.connectLayer(2);
     socket.on('input', function (input) {
-        layer.activateLayer(input);
         console.log(mathjs_1.default.max(mathjs_1.default.flatten(layer.activations)));
     });
 });
